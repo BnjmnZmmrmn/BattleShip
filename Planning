@@ -1,0 +1,14 @@
+Classes:
+- Board.java
+- Game.java
+
+Board.java:
+    Vars:
+    private static final int _WIDTH;
+    private static final int _HEIGHT;
+    private char[][] _FIELD;
+    private static _PLAYERNAME;
+    private boolean _ALIVE;
+
+    Methods:
+    
