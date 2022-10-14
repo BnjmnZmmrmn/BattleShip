@@ -7,12 +7,14 @@ Board.java:
     private static final int _WIDTH;
     private static final int _HEIGHT;
     private char[][] _FIELD;
-    private static _PLAYERNAME;
+    private static String _PLAYERNAME;
     private boolean _ALIVE;
     private Stack<String> _MVLIST;
 
     Methods:
-    void placeShip(int len, char dir)
+    public Board(String playerName, ArrayList<String[]> shipPlacements)
+    boolean canPlace(int len, char dir, String loc)
+    void placeShip(int len, char dir, String loc)
     boolean canMove(String move)
     void move(String move)
     void printBoard()
