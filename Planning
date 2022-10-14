@@ -9,6 +9,30 @@ Board.java:
     private char[][] _FIELD;
     private static _PLAYERNAME;
     private boolean _ALIVE;
+    private Stack<String> _MVLIST;
 
     Methods:
-    
+    void placeShip(int len, char dir)
+    boolean canMove(String move)
+    void move(String move)
+    void printBoard()
+    void printHits()
+    void undo()
+    void reset()
+
+Game.java:
+    Vars:
+    private static final _MAXMV;
+    private int _MVCNT;
+    private int _PLYRTURN;
+    private int _WINNER;
+    private Board _BRDONE;
+    private Board _BRDTWO;
+
+
+    Methods:
+    void initialize()
+    void resetBoard()
+    void makeMove(String move)
+    boolean isWinner()
+
