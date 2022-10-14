@@ -102,11 +102,37 @@ public class Board {
      * @param loc
      */
     public void placeShip(int len, char dir, String loc) {
-
+        int r = Integer.parseInt(loc.substring(1));
+        int c = loc.charAt(0) - 97;
+        if (dir == 'w') {
+            for (int i = len; i > 0; i--); {
+                _FIELD[r - len][c] = 'X';
+            }
+        } else if (dir == 's') {
+            for (int i = len; i > 0; i--); {
+                _FIELD[r + len][c] = 'X';
+            }
+        } else if (dir == 'a') {
+            for (int i = len; i > 0; i--); {
+                _FIELD[r][c - len] = 'X';
+            }
+        } else if (dir == 'd') {
+            for (int i = len; i > 0; i--); {
+                _FIELD[r][c + len] = 'X';
+            }
+        }
     }
 
+    /** Checks if a spot is not hit yet.
+     * @param move
+     */
     public boolean canMove(String move) {
-        return false;
+        int r = Integer.parseInt(move.substring(1));
+        int c = move.charAt(0) - 97;
+        if (_FIELD[r][c] != '0' || _FIELD[r][c] != '*') {
+            return false;
+        }
+        return true;
     }
 
     public void move(String move) {
