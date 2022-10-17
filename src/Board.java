@@ -136,23 +136,38 @@ public class Board {
         return true;
     }
 
+    /** Places a shot on the board.
+     * @param move
+     */
     public void move(String move) {
 
     }
 
+    /** Prints out a textual rendition of the board
+     * according to '-' denotes empty space, 'O' denotes
+     * a miss, '*' denotes a hit, and 'X' denotes a ship.
+     * Notably, this is the users perspective, showing all boats.
+     */
     public void printBoard() {
 
     }
 
+    /** Prints out a textual rendition of the board
+     * according to '-' denotes empty space, 'O' denotes
+     * a miss, and '*' denotes a hit.  Notably, this is a
+     * ship-less because this view is for the other player.
+     */
     public void printHits() {
 
     }
 
+    /** This reverts the last shot placed on the board. */
     public void undo() {
 
     }
 
-    public void reset() {
+    /** This resets the board to before ships were placed. */
+    public void reset()  {
 
     }
 }

@@ -62,16 +62,21 @@ Board.java:
         /** Prints out a textual rendition of the board
          * according to '-' denotes empty space, 'O' denotes
          * a miss, '*' denotes a hit, and 'X' denotes a ship.
+         * Notably, this is the users perspective, showing all boats.
          */
         void printBoard()
 
-
+        /** Prints out a textual rendition of the board
+         * according to '-' denotes empty space, 'O' denotes
+         * a miss, and '*' denotes a hit.  Notably, this is a
+         * ship-less because this view is for the other player.
+         */
         void printHits()
 
-
+        /** This reverts the last shot placed on the board. */
         void undo()
 
-
+        /** This resets the board to before ships were placed. */
         void reset()
 
 Game.java:
