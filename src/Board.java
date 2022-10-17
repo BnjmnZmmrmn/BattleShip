@@ -3,6 +3,7 @@ import java.util.Stack;
 
 /** This class contains the players ships and tracks hits,
  *  interfacing with Game.java.
+ *  Author: Ben Zimmerman
  *  */
 public class Board {
 
