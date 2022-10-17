@@ -36,6 +36,9 @@ Board.java:
          *  */
         public Board(String playerName, ArrayList<String[]> shipPlacements)
 
+        /** Returns the player name associated with the board. */
+        public String getName()
+
         /** Checks if a ship can be placed.
          * @param len
          * @param dir

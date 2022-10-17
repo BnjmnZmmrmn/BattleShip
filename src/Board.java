@@ -48,6 +48,11 @@ public class Board {
         }
     }
 
+    /** Returns the player name associated with the board. */
+    public String getName() {
+        return _PLYRNAME;
+    }
+
     /** Checks if a ship can be placed.
      * @param len
      * @param dir
@@ -140,7 +145,14 @@ public class Board {
      * @param move
      */
     public void move(String move) {
-
+        int r = Integer.parseInt(move.substring(1));
+        int c = move.charAt(0) - 97;
+        if (_FIELD[r][c] == 'X') {
+            _FIELD[r][c] = '*';
+        } else {
+            _FIELD[r][c] = '0';
+        }
+        _MVLIST.push(move);
     }
 
     /** Prints out a textual rendition of the board
@@ -149,7 +161,14 @@ public class Board {
      * Notably, this is the users perspective, showing all boats.
      */
     public void printBoard() {
-
+        for (int r = 0; r < _HEIGHT; r++) {
+            for (int c = 0; c < _WIDTH; c++) {
+                System.out.println(_FIELD[r][c]);
+                if (c != _WIDTH - 1) {
+                    System.out.println(" ");
+                }
+            }
+        }
     }
 
     /** Prints out a textual rendition of the board
@@ -158,12 +177,32 @@ public class Board {
      * ship-less because this view is for the other player.
      */
     public void printHits() {
-
+        for (int r = 0; r < _HEIGHT; r++) {
+            for (int c = 0; c < _WIDTH; c++) {
+                if (_FIELD[r][c] != 'X') {
+                    System.out.println(_FIELD[r][c]);
+                } else {
+                    System.out.println("-");
+                }
+                if (c != _WIDTH - 1) {
+                    System.out.println(" ");
+                }
+            }
+        }
     }
 
     /** This reverts the last shot placed on the board. */
     public void undo() {
-
+        if (!_MVLIST.peek().equals(null)) {
+            String move = _MVLIST.pop();
+            int r = Integer.parseInt(move.substring(1));
+            int c = move.charAt(0) - 97;
+            if (_FIELD[r][c] == '*') {
+                _FIELD[r][c] = 'X';
+            } else {
+                _FIELD[r][c] = '-';
+            }
+        }
     }
 
     /** This resets the board to before ships were placed. */
