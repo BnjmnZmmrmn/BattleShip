@@ -4,23 +4,75 @@ Classes:
 
 Board.java:
     Vars:
-    private static final int _WIDTH;
-    private static final int _HEIGHT;
-    private char[][] _FIELD;
-    private static String _PLAYERNAME;
-    private boolean _ALIVE;
-    private Stack<String> _MVLIST;
+        /** Width of the board. */
+        private static final int _WIDTH;
+
+        /** Height of the board. */
+        private static final int _HEIGHT;
+
+        /** This is how the board is stored.  '-' denotes empty
+         *  space, 'O' denotes a miss, '*' denotes a hit, and
+         *  'X' denotes a ship.
+         *  */
+        private char[][] _FIELD;
+
+        /** Stores player name. */
+        private static String _PLYRNAME;
+
+        /** True if player has ships remaining, false otherwise. */
+        private boolean _ALIVE;
+
+        /** A list of moves made to this board. */
+        private Stack<String> _MVLIST;
 
     Methods:
-    public Board(String playerName, ArrayList<String[]> shipPlacements)
-    boolean canPlace(int len, char dir, String loc)
-    void placeShip(int len, char dir, String loc)
-    boolean canMove(String move)
-    void move(String move)
-    void printBoard()
-    void printHits()
-    void undo()
-    void reset()
+        /** Board constructor.  Stores player name, handles an
+         *  ArrayList of ship placements and puts the ships on
+         *  the board.
+         *  @param playerName
+         *  @param shipPlacements
+         *  */
+        public Board(String playerName, ArrayList<String[]> shipPlacements)
+
+        /** Checks if a ship can be placed.
+         * @param len
+         * @param dir
+         * @param loc
+         */
+        boolean canPlace(int len, char dir, String loc)
+
+        /** Places a ship on the board of a specific length len
+         *  in a direction dir at square loc.
+         * @param len
+         * @param dir
+         * @param loc
+         */
+        void placeShip(int len, char dir, String loc)
+
+        /** Checks if a spot is not hit yet.
+         * @param move
+         */
+        boolean canMove(String move)
+
+        /** Places a shot on the board.
+         * @param move
+         */
+        void move(String move)
+
+        /** Prints out a textual rendition of the board
+         * according to '-' denotes empty space, 'O' denotes
+         * a miss, '*' denotes a hit, and 'X' denotes a ship.
+         */
+        void printBoard()
+
+
+        void printHits()
+
+
+        void undo()
+
+
+        void reset()
 
 Game.java:
     Vars:
