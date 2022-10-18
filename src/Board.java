@@ -207,6 +207,8 @@ public class Board {
 
     /** This resets the board to before ships were placed. */
     public void reset()  {
-
+        while (!_MVLIST.peek().equals(null)) {
+            undo();
+        }
     }
 }
