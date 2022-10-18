@@ -1,40 +1,42 @@
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getName() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void canPlace() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void placeShip() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void canMove() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void move() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void printBoard() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void printHits() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void undo() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void reset() {
     }
 }
