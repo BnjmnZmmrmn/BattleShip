@@ -38,6 +38,10 @@ class BoardTest {
     void placeShip() {
         initBoards();
         _TESTBOARD1.placeShip(5, 'w', "a7");
+        _TESTBOARD1.placeShip(3, 'a', "f2");
+        _TESTBOARD1.placeShip(2, 's', "i9");
+        _TESTBOARD1.placeShip(1, 'd', "j5");
+        _TESTBOARD1.placeShip(3, 'd', "c7");
         assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._PLACE1));
     }
 
