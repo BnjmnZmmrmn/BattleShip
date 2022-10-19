@@ -20,7 +20,7 @@ public class Board {
     private char[][] _FIELD;
 
     /** Stores player name. */
-    private static String _PLYRNAME;
+    private String _PLYRNAME;
 
     /** True if player has ships remaining, false otherwise. */
     private boolean _ALIVE = true;
@@ -32,19 +32,14 @@ public class Board {
      *  ArrayList of ship placements and puts the ships on
      *  the board.
      *  @param playerName
-     *  @param shipPlacements
      *  */
-    public Board(String playerName, ArrayList<String[]> shipPlacements) {
+    public Board(String playerName) {
         _PLYRNAME = playerName;
         _FIELD = new char[_WIDTH][_HEIGHT];
         for (int r = 0; r < _WIDTH; r++) {
             for (int c = 0; c < _HEIGHT; c++) {
                 _FIELD[r][c] = '-';
             }
-        }
-        for (int i = 0; i < 5; i++) {
-            String[] placement = shipPlacements.get(i);
-            placeShip(Integer.getInteger(placement[0]), placement[1].charAt(0), placement[2]);
         }
     }
 
