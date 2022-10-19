@@ -150,6 +150,11 @@ public class Board {
         _MVLIST.push(move);
     }
 
+    /** Used for debugging purposes only. */
+    public char[][] getField() {
+        return _FIELD;
+    }
+
     /** Prints out a textual rendition of the board
      * according to '-' denotes empty space, 'O' denotes
      * a miss, '*' denotes a hit, and 'X' denotes a ship.

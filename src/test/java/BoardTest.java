@@ -9,6 +9,7 @@ class BoardTest {
     final String _NAME1 = "Ben";
     final String _NAME2 = "Kip";
 
+
     @Test
     void getName() {
         initBoards();
@@ -33,7 +34,7 @@ class BoardTest {
     void placeShip() {
         initBoards();
         _TESTBOARD1.placeShip(5, 'w', "a7");
-        _TESTBOARD1.printBoard();
+        assertTrue(_TESTBOARD1.getField().equals(BoardTestHelper._PLACE1));
     }
 
     @Test
