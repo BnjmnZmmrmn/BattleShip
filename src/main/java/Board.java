@@ -34,6 +34,7 @@ public class Board {
      *  @param playerName
      *  */
     public Board(String playerName) {
+        assert (!playerName.equals(""));
         _PLYRNAME = playerName;
         _FIELD = new char[_HEIGHT][_WIDTH];
         for (int r = 0; r < _HEIGHT; r++) {
@@ -54,8 +55,11 @@ public class Board {
      * @param loc
      */
     public boolean canPlace(int len, char dir, String loc) {
+        assert (len <= 5 && len >= 1);
+        assert (dir == 'w' || dir == 'a' || dir == 's' || dir == 'd');
         int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
         try {
             switch (dir) {
                 case 'w':
@@ -64,29 +68,33 @@ public class Board {
                             return false;
                         }
                     }
+                    return true;
                 case 'a':
                     for (int i = 0; i < len; i++) {
                         if (_FIELD[r][c - i] != '-') {
                             return false;
                         }
                     }
+                    return true;
                 case 's':
                     for (int i = 0; i < len; i++) {
                         if (_FIELD[r + i][c] != '-') {
                             return false;
                         }
                     }
+                    return true;
                 case 'd':
                     for (int i = 0; i < len; i++) {
                         if (_FIELD[r][c + i] != '-') {
                             return false;
                         }
                     }
+                    return true;
             }
-            return true;
         } catch (Exception e) {
             return false;
         }
+        return false;
     }
 
     /** Places a ship on the board of a specific length len
@@ -96,8 +104,11 @@ public class Board {
      * @param loc
      */
     public void placeShip(int len, char dir, String loc) {
+        assert (len <= 5 && len >= 1);
+        assert (dir == 'w' || dir == 'a' || dir == 's' || dir == 'd');
         int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
         switch (dir) {
             case 'w':
                 for (int i = 0; i < len; i++) {
@@ -124,6 +135,7 @@ public class Board {
     public boolean canMove(String move) {
         int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
         if (_FIELD[r][c] != '0' || _FIELD[r][c] != '*') {
             return false;
         }
@@ -136,6 +148,7 @@ public class Board {
     public void move(String move) {
         int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
         if (_FIELD[r][c] == 'X') {
             _FIELD[r][c] = '*';
         } else {
