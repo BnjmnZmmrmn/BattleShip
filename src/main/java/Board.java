@@ -56,44 +56,37 @@ public class Board {
     public boolean canPlace(int len, char dir, String loc) {
         int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
-        if (dir == 'w') {
-            if (r + 1 < len) {
-                return false;
+        try {
+            switch (dir) {
+                case 'w':
+                    for (int i = 0; i < len; i++) {
+                        if (_FIELD[r - i][c] != '-') {
+                            return false;
+                        }
+                    }
+                case 'a':
+                    for (int i = 0; i < len; i++) {
+                        if (_FIELD[r][c - i] != '-') {
+                            return false;
+                        }
+                    }
+                case 's':
+                    for (int i = 0; i < len; i++) {
+                        if (_FIELD[r + i][c] != '-') {
+                            return false;
+                        }
+                    }
+                case 'd':
+                    for (int i = 0; i < len; i++) {
+                        if (_FIELD[r][c + i] != '-') {
+                            return false;
+                        }
+                    }
             }
-            for (int i = len; i > 0; i--); {
-                if (_FIELD[r - len][c] != '-') {
-                    return false;
-                }
-            }
-        } else if (dir == 's') {
-            if (r + 1 > _HEIGHT - len) {
-                return false;
-            }
-            for (int i = len; i > 0; i--); {
-                if (_FIELD[r + len][c] != '-') {
-                    return false;
-                }
-            }
-        } else if (dir == 'a') {
-            if (c + 1 < len) {
-                return false;
-            }
-            for (int i = len; i > 0; i--); {
-                if (_FIELD[r][c - len] != '-') {
-                    return false;
-                }
-            }
-        } else if (dir == 'd') {
-            if (c + 1 > _WIDTH - len) {
-                return false;
-            }
-            for (int i = len; i > 0; i--); {
-                if (_FIELD[r][c + len] != '-') {
-                    return false;
-                }
-            }
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return true;
     }
 
     /** Places a ship on the board of a specific length len
@@ -105,22 +98,23 @@ public class Board {
     public void placeShip(int len, char dir, String loc) {
         int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
-        if (dir == 'w') {
-            for (int i = len; i > 0; i--); {
-                _FIELD[r - len][c] = 'X';
-            }
-        } else if (dir == 's') {
-            for (int i = len; i > 0; i--); {
-                _FIELD[r + len][c] = 'X';
-            }
-        } else if (dir == 'a') {
-            for (int i = len; i > 0; i--); {
-                _FIELD[r][c - len] = 'X';
-            }
-        } else if (dir == 'd') {
-            for (int i = len; i > 0; i--); {
-                _FIELD[r][c + len] = 'X';
-            }
+        switch (dir) {
+            case 'w':
+                for (int i = 0; i < len; i++) {
+                    _FIELD[r - i][c] = 'X';
+                }
+            case 'a':
+                for (int i = 0; i < len; i++) {
+                    _FIELD[r][c - i] = 'X';
+                }
+            case 's':
+                for (int i = 0; i < len; i++) {
+                    _FIELD[r + i][c] = 'X';
+                }
+            case 'd':
+                for (int i = 0; i < len; i++) {
+                    _FIELD[r][c + i] = 'X';
+                }
         }
     }
 
