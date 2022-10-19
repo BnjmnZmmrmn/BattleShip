@@ -35,9 +35,9 @@ public class Board {
      *  */
     public Board(String playerName) {
         _PLYRNAME = playerName;
-        _FIELD = new char[_WIDTH][_HEIGHT];
-        for (int r = 0; r < _WIDTH; r++) {
-            for (int c = 0; c < _HEIGHT; c++) {
+        _FIELD = new char[_HEIGHT][_WIDTH];
+        for (int r = 0; r < _HEIGHT; r++) {
+            for (int c = 0; c < _WIDTH; c++) {
                 _FIELD[r][c] = '-';
             }
         }
@@ -54,7 +54,7 @@ public class Board {
      * @param loc
      */
     public boolean canPlace(int len, char dir, String loc) {
-        int r = Integer.parseInt(loc.substring(1));
+        int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
         if (dir == 'w') {
             if (r + 1 < len) {
@@ -103,7 +103,7 @@ public class Board {
      * @param loc
      */
     public void placeShip(int len, char dir, String loc) {
-        int r = Integer.parseInt(loc.substring(1));
+        int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
         if (dir == 'w') {
             for (int i = len; i > 0; i--); {
@@ -128,7 +128,7 @@ public class Board {
      * @param move
      */
     public boolean canMove(String move) {
-        int r = Integer.parseInt(move.substring(1));
+        int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
         if (_FIELD[r][c] != '0' || _FIELD[r][c] != '*') {
             return false;
@@ -140,7 +140,7 @@ public class Board {
      * @param move
      */
     public void move(String move) {
-        int r = Integer.parseInt(move.substring(1));
+        int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
         if (_FIELD[r][c] == 'X') {
             _FIELD[r][c] = '*';
@@ -158,9 +158,9 @@ public class Board {
     public void printBoard() {
         for (int r = 0; r < _HEIGHT; r++) {
             for (int c = 0; c < _WIDTH; c++) {
-                System.out.println(_FIELD[r][c]);
-                if (c != _WIDTH - 1) {
-                    System.out.println(" ");
+                System.out.print(_FIELD[r][c] + " ");
+                if (c == _WIDTH - 1) {
+                    System.out.println();
                 }
             }
         }
@@ -175,9 +175,9 @@ public class Board {
         for (int r = 0; r < _HEIGHT; r++) {
             for (int c = 0; c < _WIDTH; c++) {
                 if (_FIELD[r][c] != 'X') {
-                    System.out.println(_FIELD[r][c]);
+                    System.out.print(_FIELD[r][c] + " ");
                 } else {
-                    System.out.println("-");
+                    System.out.print("- ");
                 }
                 if (c != _WIDTH - 1) {
                     System.out.println(" ");

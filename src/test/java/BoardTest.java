@@ -18,10 +18,22 @@ class BoardTest {
 
     @Test
     void canPlace() {
+        initBoards();
+        assertFalse(_TESTBOARD1.canPlace(5, 'w', "a3"));
+        assertFalse(_TESTBOARD1.canPlace(5, 'a', "c1"));
+        assertFalse(_TESTBOARD1.canPlace(5, 's', "f7"));
+        assertFalse(_TESTBOARD1.canPlace(5, 'd', "i7"));
+        assertTrue(_TESTBOARD1.canPlace(5, 'w', "a7"));
+        assertTrue(_TESTBOARD1.canPlace(5, 'a', "i2"));
+        assertTrue(_TESTBOARD1.canPlace(5, 's', "f3"));
+        assertTrue(_TESTBOARD1.canPlace(5, 'd', "c10"));
     }
 
     @Test
     void placeShip() {
+        initBoards();
+        _TESTBOARD1.placeShip(5, 'w', "a7");
+        _TESTBOARD1.printBoard();
     }
 
     @Test
