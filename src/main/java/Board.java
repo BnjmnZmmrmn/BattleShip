@@ -59,7 +59,7 @@ public class Board {
         assert (dir == 'w' || dir == 'a' || dir == 's' || dir == 'd');
         int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
-        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
         try {
             switch (dir) {
                 case 'w':
@@ -108,24 +108,28 @@ public class Board {
         assert (dir == 'w' || dir == 'a' || dir == 's' || dir == 'd');
         int r = Integer.parseInt(loc.substring(1)) - 1;
         int c = loc.charAt(0) - 97;
-        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
         switch (dir) {
             case 'w':
                 for (int i = 0; i < len; i++) {
                     _FIELD[r - i][c] = 'X';
                 }
+                return;
             case 'a':
                 for (int i = 0; i < len; i++) {
                     _FIELD[r][c - i] = 'X';
                 }
+                return;
             case 's':
                 for (int i = 0; i < len; i++) {
                     _FIELD[r + i][c] = 'X';
                 }
+                return;
             case 'd':
                 for (int i = 0; i < len; i++) {
                     _FIELD[r][c + i] = 'X';
                 }
+                return;
         }
     }
 

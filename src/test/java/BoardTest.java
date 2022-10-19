@@ -2,6 +2,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** This class contains tests for Board.java as well
+ *  as accessory methods to aid in testing.
+ * @author Ben Zimmerman
+ */
 class BoardTest {
 
     private Board _TESTBOARD1;
@@ -34,7 +38,7 @@ class BoardTest {
     void placeShip() {
         initBoards();
         _TESTBOARD1.placeShip(5, 'w', "a7");
-        assertTrue(_TESTBOARD1.getField().equals(BoardTestHelper._PLACE1));
+        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._PLACE1));
     }
 
     @Test
@@ -61,8 +65,21 @@ class BoardTest {
     void reset() {
     }
 
+    /** Initializes test boards with given names. */
     void initBoards() {
         _TESTBOARD1 = new Board(_NAME1);
         _TESTBOARD2 = new Board(_NAME2);
+    }
+
+    /** Compares two char[][] datatypes. */
+    boolean bEquals(char[][] compare, char[][] to) {
+        for (int r = 0; r < 10; r++) {
+            for (int c = 0; c < 10; c++) {
+                if (compare[r][c] != to[r][c]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
