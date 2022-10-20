@@ -84,6 +84,14 @@ class BoardTest {
 
     @Test
     void canMove() {
+        initBoards();
+        initShips();
+        for (char r = 'a'; r <= 'j'; r++) {
+            for (int c = 1; c <= 10; c++) {
+                assertTrue(_TESTBOARD1.canMove(r + "" + c));
+                assertTrue(_TESTBOARD2.canMove(r + "" + c));
+            }
+        }
     }
 
     @Test
@@ -110,6 +118,21 @@ class BoardTest {
     void initBoards() {
         _TESTBOARD1 = new Board(_NAME1);
         _TESTBOARD2 = new Board(_NAME2);
+    }
+
+    /** Adds ships to the test board congruent with BoardTestHelper. */
+    void initShips() {
+        _TESTBOARD1.placeShip(5, 'w', "a7");
+        _TESTBOARD1.placeShip(3, 'a', "f2");
+        _TESTBOARD1.placeShip(2, 's', "i9");
+        _TESTBOARD1.placeShip(4, 'd', "g5");
+        _TESTBOARD1.placeShip(3, 'd', "c7");
+
+        _TESTBOARD2.placeShip(5, 's', "c3");
+        _TESTBOARD2.placeShip(4, 'd', "e4");
+        _TESTBOARD2.placeShip(3, 'w', "f9");
+        _TESTBOARD2.placeShip(3, 'w', "g8");
+        _TESTBOARD2.placeShip(2, 'a', "i9");
     }
 
     /** Compares two char[][] datatypes. */

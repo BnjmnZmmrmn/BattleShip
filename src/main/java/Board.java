@@ -138,8 +138,8 @@ public class Board {
     public boolean canMove(String move) {
         int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
-        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
-        if (_FIELD[r][c] != '0' || _FIELD[r][c] != '*') {
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
+        if (_FIELD[r][c] == '0' || _FIELD[r][c] == '*') {
             return false;
         }
         return true;
@@ -151,7 +151,7 @@ public class Board {
     public void move(String move) {
         int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
-        assert (r >= 0 && r <= 9 && c >= 0 && c <= 0);
+        assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
         if (_FIELD[r][c] == 'X') {
             _FIELD[r][c] = '*';
         } else {
