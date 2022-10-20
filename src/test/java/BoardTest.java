@@ -32,6 +32,36 @@ class BoardTest {
         assertTrue(_TESTBOARD1.canPlace(5, 'a', "i2"));
         assertTrue(_TESTBOARD1.canPlace(5, 's', "f3"));
         assertTrue(_TESTBOARD1.canPlace(5, 'd', "c10"));
+
+        _TESTBOARD1.placeShip(5, 'w', "a7");
+        _TESTBOARD1.placeShip(3, 'a', "f2");
+        _TESTBOARD1.placeShip(2, 's', "i9");
+        _TESTBOARD1.placeShip(4, 'd', "g5");
+        _TESTBOARD1.placeShip(3, 'd', "c7");
+
+        assertFalse(_TESTBOARD1.canPlace(5, 'w', "d7"));
+        assertFalse(_TESTBOARD1.canPlace(4, 'd', "g9"));
+        assertFalse(_TESTBOARD1.canPlace(3, 'a', "c3"));
+        assertFalse(_TESTBOARD1.canPlace(3, 's', "d1"));
+        assertTrue(_TESTBOARD1.canPlace(5, 'd', "b3"));
+        assertTrue(_TESTBOARD1.canPlace(4, 's', "f3"));
+        assertTrue(_TESTBOARD1.canPlace(3, 'a', "d6"));
+        assertTrue(_TESTBOARD1.canPlace(2, 'w', "b7"));
+
+        _TESTBOARD2.placeShip(5, 's', "c3");
+        _TESTBOARD2.placeShip(4, 'd', "e4");
+        _TESTBOARD2.placeShip(3, 'w', "f9");
+        _TESTBOARD2.placeShip(3, 'w', "g8");
+        _TESTBOARD2.placeShip(2, 'a', "i9");
+
+        assertFalse(_TESTBOARD2.canPlace(5, 'a', "e3"));
+        assertFalse(_TESTBOARD2.canPlace(4, 'd', "g6"));
+        assertFalse(_TESTBOARD2.canPlace(3, 'a', "h6"));
+        assertFalse(_TESTBOARD2.canPlace(3, 's', "c1"));
+        assertTrue(_TESTBOARD2.canPlace(5, 'w', "d8"));
+        assertTrue(_TESTBOARD2.canPlace(4, 'd', "d5"));
+        assertTrue(_TESTBOARD2.canPlace(3, 'a', "f6"));
+        assertTrue(_TESTBOARD2.canPlace(2, 's', "f5"));
     }
 
     @Test
@@ -40,9 +70,16 @@ class BoardTest {
         _TESTBOARD1.placeShip(5, 'w', "a7");
         _TESTBOARD1.placeShip(3, 'a', "f2");
         _TESTBOARD1.placeShip(2, 's', "i9");
-        _TESTBOARD1.placeShip(1, 'd', "j5");
+        _TESTBOARD1.placeShip(4, 'd', "g5");
         _TESTBOARD1.placeShip(3, 'd', "c7");
         assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._PLACE1));
+
+        _TESTBOARD2.placeShip(5, 's', "c3");
+        _TESTBOARD2.placeShip(4, 'd', "e4");
+        _TESTBOARD2.placeShip(3, 'w', "f9");
+        _TESTBOARD2.placeShip(3, 'w', "g8");
+        _TESTBOARD2.placeShip(2, 'a', "i9");
+        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._PLACE2));
     }
 
     @Test

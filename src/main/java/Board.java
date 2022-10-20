@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Stack;
 
 /** This class contains the players ships and tracks hits,
