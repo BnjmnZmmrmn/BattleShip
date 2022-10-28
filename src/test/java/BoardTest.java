@@ -92,6 +92,18 @@ class BoardTest {
                 assertTrue(_TESTBOARD2.canMove(r + "" + c));
             }
         }
+        initMove();
+        assertFalse(_TESTBOARD1.canMove(("d4")));
+        assertFalse(_TESTBOARD1.canMove(("h5")));
+        assertFalse(_TESTBOARD1.canMove(("j5")));
+        assertTrue(_TESTBOARD1.canMove(("j7")));
+        assertTrue(_TESTBOARD1.canMove(("a1")));
+
+        assertFalse(_TESTBOARD2.canMove(("c6")));
+        assertFalse(_TESTBOARD2.canMove(("h2")));
+        assertFalse(_TESTBOARD2.canMove(("f4")));
+        assertTrue(_TESTBOARD2.canMove(("e9")));
+        assertTrue(_TESTBOARD2.canMove(("a1")));
     }
 
     @Test
@@ -166,6 +178,33 @@ class BoardTest {
         _TESTBOARD2.placeShip(3, 'w', "f9");
         _TESTBOARD2.placeShip(3, 'w', "g8");
         _TESTBOARD2.placeShip(2, 'a', "i9");
+    }
+
+    /** Makes 10 moves on each board. */
+    void initMove() {
+        _TESTBOARD1.move("d4");
+        _TESTBOARD1.move("e5");
+        _TESTBOARD1.move("h5");
+        _TESTBOARD1.move("i5");
+        _TESTBOARD1.move("j5");
+
+        _TESTBOARD1.move("g5");
+        _TESTBOARD1.move("d9");
+        _TESTBOARD1.move("h2");
+        _TESTBOARD1.move("i9");
+        _TESTBOARD1.move("h9");
+
+        _TESTBOARD2.move("c3");
+        _TESTBOARD2.move("d3");
+        _TESTBOARD2.move("c2");
+        _TESTBOARD2.move("c4");
+        _TESTBOARD2.move("c5");
+
+        _TESTBOARD2.move("c6");
+        _TESTBOARD2.move("c7");
+        _TESTBOARD2.move("h2");
+        _TESTBOARD2.move("e8");
+        _TESTBOARD2.move("f4");
     }
 
     /** Compares two char[][] datatypes. */
