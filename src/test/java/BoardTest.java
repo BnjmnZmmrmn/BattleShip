@@ -111,6 +111,20 @@ class BoardTest {
         _TESTBOARD1.move("i9");
         _TESTBOARD1.move("h9");
         assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._MOVE2));
+
+        _TESTBOARD2.move("c3");
+        _TESTBOARD2.move("d3");
+        _TESTBOARD2.move("c2");
+        _TESTBOARD2.move("c4");
+        _TESTBOARD2.move("c5");
+        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._MOVE3));
+
+        _TESTBOARD2.move("c6");
+        _TESTBOARD2.move("c7");
+        _TESTBOARD2.move("h2");
+        _TESTBOARD2.move("e8");
+        _TESTBOARD2.move("f4");
+        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._MOVE4));
     }
 
     @Test
