@@ -96,8 +96,27 @@ class BoardTest {
 
     @Test
     void move() {
+        initBoards();
+        initShips();
+        _TESTBOARD1.move("d4");
+        _TESTBOARD1.move("e5");
+        _TESTBOARD1.move("h5");
+        _TESTBOARD1.move("i5");
+        _TESTBOARD1.move("j5");
+        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._MOVE1));
+
+        _TESTBOARD1.move("g5");
+        _TESTBOARD1.move("d9");
+        _TESTBOARD1.move("h2");
+        _TESTBOARD1.move("i9");
+        _TESTBOARD1.move("h9");
+        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._MOVE2));
     }
 
+    @Test
+    void isAlive() {
+
+    }
     @Test
     void printBoard() {
     }

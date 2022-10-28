@@ -21,8 +21,8 @@ Board.java:
         /** Stores player name. */
         private static String _PLYRNAME;
 
-        /** True if player has ships remaining, false otherwise. */
-        private boolean _ALIVE;
+        /** Amount of hits on the board */
+        private int _HITS = 0;
 
         /** A list of moves made to this board. */
         private Stack<String> _MVLIST;
@@ -63,6 +63,9 @@ Board.java:
          * @param move
          */
         void move(String move)
+
+        /** Returns true if any boats are still alive, false otherwise. */
+        public boolean isAlive()
 
         /** Used for debugging purposes only. */
         public char[][] getField()

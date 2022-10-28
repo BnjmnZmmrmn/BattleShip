@@ -21,8 +21,8 @@ public class Board {
     /** Stores player name. */
     private String _PLYRNAME;
 
-    /** True if player has ships remaining, false otherwise. */
-    private boolean _ALIVE = true;
+    /** Amount of hits on the board */
+    private int _HITS = 0;
 
     /** A list of moves made to this board. */
     private Stack<String> _MVLIST = new Stack<>();
@@ -154,10 +154,16 @@ public class Board {
         assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
         if (_FIELD[r][c] == 'X') {
             _FIELD[r][c] = '*';
+            _HITS++;
         } else {
-            _FIELD[r][c] = '0';
+            _FIELD[r][c] = 'O';
         }
         _MVLIST.push(move);
+    }
+
+    /** Returns true if any boats are still alive, false otherwise. */
+    public boolean isAlive() {
+        return _HITS < 17;
     }
 
     /** Used for debugging purposes only. */
