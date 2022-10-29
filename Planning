@@ -24,6 +24,9 @@ Board.java:
         /** Amount of hits on the board */
         private int _HITS = 0;
 
+        /** Amount of hits it takes to kill a player. */
+        private static final int _MAXHITS = 17;
+
         /** A list of moves made to this board. */
         private Stack<String> _MVLIST;
 
@@ -105,4 +108,5 @@ Game.java:
     void resetBoard()
     void makeMove(String move)
     boolean isWinner()
+    void main()
 

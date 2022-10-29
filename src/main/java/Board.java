@@ -21,8 +21,11 @@ public class Board {
     /** Stores player name. */
     private String _PLYRNAME;
 
-    /** Amount of hits on the board */
+    /** Amount of hits on the board. */
     private int _HITS = 0;
+
+    /** Amount of hits it takes to kill a player. */
+    private static final int _MAXHITS = 17;
 
     /** A list of moves made to this board. */
     private Stack<String> _MVLIST = new Stack<>();
@@ -163,7 +166,7 @@ public class Board {
 
     /** Returns true if any boats are still alive, false otherwise. */
     public boolean isAlive() {
-        return _HITS < 17;
+        return _HITS < _MAXHITS;
     }
 
     /** Used for debugging purposes only. */
