@@ -211,7 +211,7 @@ public class Board {
     public void undo() {
         if (!_MVLIST.peek().equals(null)) {
             String move = _MVLIST.pop();
-            int r = Integer.parseInt(move.substring(1));
+            int r = Integer.parseInt(move.substring(1)) - 1;
             int c = move.charAt(0) - 97;
             if (_FIELD[r][c] == '*') {
                 _FIELD[r][c] = 'X';
@@ -224,8 +224,9 @@ public class Board {
 
     /** This resets the board to before ships were placed. */
     public void reset()  {
-        while (!_MVLIST.peek().equals(null)) {
+        while (!_MVLIST.empty()) {
             undo();
         }
+        return;
     }
 }
