@@ -141,22 +141,85 @@ class BoardTest {
 
     @Test
     void isAlive() {
-
+        initBoards();
+        initShips();
+        initMove();
+        assertTrue(_TESTBOARD1.isAlive());
+        assertTrue(_TESTBOARD2.isAlive());
+        _TESTBOARD1.move("d2");
+        _TESTBOARD1.move("e2");
+        _TESTBOARD1.move("f2");
+        _TESTBOARD1.move("a3");
+        _TESTBOARD1.move("a4");
+        _TESTBOARD1.move("a5");
+        _TESTBOARD1.move("a6");
+        _TESTBOARD1.move("a7");
+        _TESTBOARD1.move("c7");
+        _TESTBOARD1.move("d7");
+        _TESTBOARD1.move("e7");
+        assertTrue(_TESTBOARD1.isAlive());
+        _TESTBOARD1.move("i10");
+        assertFalse(_TESTBOARD1.isAlive());
+        assertTrue(_TESTBOARD2.isAlive());
+        _TESTBOARD2.move("e4");
+        _TESTBOARD2.move("g4");
+        _TESTBOARD2.move("h4");
+        _TESTBOARD2.move("f7");
+        _TESTBOARD2.move("f8");
+        _TESTBOARD2.move("f9");
+        _TESTBOARD2.move("g6");
+        _TESTBOARD2.move("g7");
+        _TESTBOARD2.move("g8");
+        _TESTBOARD2.move("h9");
+        assertTrue(_TESTBOARD2.isAlive());
+        _TESTBOARD2.move("i9");
+        assertFalse(_TESTBOARD1.isAlive());
+        assertFalse(_TESTBOARD2.isAlive());
     }
     @Test
     void printBoard() {
+        initBoards();
+        initShips();
+        initMove();
+        _TESTBOARD1.printBoard();
+        System.out.println();
+        _TESTBOARD2.printBoard();
     }
 
     @Test
     void printHits() {
+        initBoards();
+        initShips();
+        initMove();
+        _TESTBOARD1.printHits();
+        System.out.println();
+        _TESTBOARD2.printHits();
     }
 
     @Test
     void undo() {
+        initBoards();
+        initShips();
+        initMove();
+        _TESTBOARD1.undo();
+        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._UNDO1));
+        _TESTBOARD1.undo();
+        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._UNDO2));
+        _TESTBOARD2.undo();
+        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._UNDO3));
+        _TESTBOARD2.undo();
+        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._UNDO4));
     }
 
     @Test
     void reset() {
+        initBoards();
+        initShips();
+        initMove();
+        _TESTBOARD1.reset();
+        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._PLACE1));
+        _TESTBOARD2.reset();
+        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._PLACE2));
     }
 
     /** Initializes test boards with given names. */
@@ -180,7 +243,7 @@ class BoardTest {
         _TESTBOARD2.placeShip(2, 'a', "i9");
     }
 
-    /** Makes 10 moves on each board. */
+    /** Makes 10 moves on each board congruent with BoardTestHelper. */
     void initMove() {
         _TESTBOARD1.move("d4");
         _TESTBOARD1.move("e5");

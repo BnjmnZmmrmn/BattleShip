@@ -200,7 +200,7 @@ public class Board {
                 } else {
                     System.out.print("- ");
                 }
-                if (c != _WIDTH - 1) {
+                if (c == _WIDTH - 1) {
                     System.out.println(" ");
                 }
             }
@@ -215,6 +215,7 @@ public class Board {
             int c = move.charAt(0) - 97;
             if (_FIELD[r][c] == '*') {
                 _FIELD[r][c] = 'X';
+                _HITS--;
             } else {
                 _FIELD[r][c] = '-';
             }
