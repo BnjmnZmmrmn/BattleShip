@@ -108,8 +108,6 @@ Game.java:
     private Board _BRDTWO;
 
     Methods:
-    /** Used to initialize player boards. */
-    void initialize(String name1, String name2)
 
     /** Places a ship on a board. */
     boolean placeShip(Board board, String loc)

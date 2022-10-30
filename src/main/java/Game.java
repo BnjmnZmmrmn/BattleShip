@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Game {
     /** The maximum amount of moves for a battleship game. */
     private static final int _MAXMV = 200;
@@ -10,12 +12,6 @@ public class Game {
 
     /** Player two's battleship board. */
     private static Board _BRDTWO;
-
-    /** Used to initialize player boards. */
-    private static void initialize(String name1, String name2) {
-        _BRDONE = new Board(name1);
-        _BRDTWO = new Board(name2);
-    }
 
     /** Places a ship on a board. */
     private static boolean placeShip(Board board, int len, char w, String loc) {
@@ -59,6 +55,15 @@ public class Game {
 
     /** Handles the inputs of the game, redirects to accessory methods. */
     public static void main(String[] args) {
-        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to BattleShip!");
+        System.out.println("What is player one's name? Leave blank for an AI player.");
+        String name1 = sc.nextLine();
+        if (name1.equals(null)) {
+            //Add once AI is made
+        } else {
+            _BRDONE = new Board(name1);
+        }
+        System.out.println("What is player two's name? Leave blank for an AI player.");
     }
 }
