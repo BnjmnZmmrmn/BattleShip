@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.concurrent.LinkedTransferQueue;
 
 public class Game {
     /** The maximum amount of moves for a battleship game. */
@@ -94,29 +95,81 @@ public class Game {
             System.out.println("This game uses grid coordinates where a1 is the" +
                     " top left corner and j10 is the bottom right corner.  The letter" +
                     " corresponds to the column and the number corresponds to the row.");
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             System.out.println("You will now be prompted to place ships.  The format for" +
                     " ship placement should be: <ship length> <direction> <coordinate>." +
                     "  Direction indicates which way a ship will point once you place it," +
                     " indicated by WASD.");
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             System.out.println("From there, players will take turns firing at coordinates." +
                     "  May the best man win!");
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }
         int[] p1Ships = {5, 4, 3, 3, 2};
         int[] p2Ships = {5, 4, 3, 3, 2};
         System.out.println(_BRDONE.getName() + ", its your turn to place ships.");
         while (p1Ships.length != 0) {
-            System.out.println("You have: " + p1Ships.toString() + ".  Please place one:");
+            _BRDONE.printBoard();
+            System.out.print("You have: ");
+            for (int i = 0; i < p1Ships.length; i ++) {
+                System.out.print(p1Ships[i]);
+                if (i != p1Ships.length - 1) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println(".  Please place one:");
             String[] cmmnd = sc.nextLine().split(" ");
             if (cmmnd.length != 3 || !simpleContains(Integer.parseInt(cmmnd[0]), p1Ships)) {
                 System.out.println("Incorrect format for placement.  Please try again.");
             } else {
-                try {
+                if (!_BRDONE.canPlace(Integer.parseInt(cmmnd[0]), cmmnd[1].charAt(0), cmmnd[2])) {
+                    System.out.println("Could not place ship.  Please try again.");
+                } else {
                     _BRDONE.placeShip(Integer.parseInt(cmmnd[0]), cmmnd[1].charAt(0), cmmnd[2]);
+                    int[] new_ships = new int[p1Ships.length - 1];
+                    int c = 0;
+                    for (int i = 0; i < p1Ships.length - 1; i++) {
+                        if (c != 1 && p1Ships[i] == Integer.parseInt(cmmnd[0])) {
+                            c = 1;
+                        }
+                        new_ships[i] = p1Ships[i + c];
+                    }
+                    p1Ships = new_ships;
                 }
             }
         }
+        Thread.sleep(1000);
+        System.out.println(_BRDTWO.getName() + ", its your turn to place ships.");
+        while (p2Ships.length != 0) {
+            _BRDTWO.printBoard();
+            System.out.print("You have: ");
+            for (int i = 0; i < p2Ships.length; i ++) {
+                System.out.print(p2Ships[i]);
+                if (i != p2Ships.length - 1) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println(".  Please place one:");
+            String[] cmmnd = sc.nextLine().split(" ");
+            if (cmmnd.length != 3 || !simpleContains(Integer.parseInt(cmmnd[0]), p2Ships)) {
+                System.out.println("Incorrect format for placement.  Please try again.");
+            } else {
+                if (!_BRDTWO.canPlace(Integer.parseInt(cmmnd[0]), cmmnd[1].charAt(0), cmmnd[2])) {
+                    System.out.println("Could not place ship.  Please try again.");
+                } else {
+                    _BRDTWO.placeShip(Integer.parseInt(cmmnd[0]), cmmnd[1].charAt(0), cmmnd[2]);
+                    int[] new_ships = new int[p2Ships.length - 1];
+                    int c = 0;
+                    for (int i = 0; i < p2Ships.length - 1; i++) {
+                        if (c != 1 && p2Ships[i] == Integer.parseInt(cmmnd[0])) {
+                            c = 1;
+                        }
+                        new_ships[i] = p2Ships[i + c];
+                    }
+                    p2Ships = new_ships;
+                }
+            }
+        }
+        
     }
 }
