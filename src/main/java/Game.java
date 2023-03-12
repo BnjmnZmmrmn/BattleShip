@@ -144,7 +144,7 @@ public class Game {
                 }
             }
         }
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         System.out.println(_BRDTWO.getName() + ", its your turn to place ships.");
         while (p2Ships.length != 0) {
             _BRDTWO.printBoard();
@@ -185,15 +185,15 @@ public class Game {
                 }
             }
         }
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         System.out.println("All ships are placed.  Do you need to hear the move rules? (Y/N)");
         ans = sc.nextLine();
         if (ans.equals("Y")) {
-            System.out.println("To attack a square, simply enter that square in grid coordinates." +
-                    "Additionally, typing \"h\" will show you the attacks you've made on the enemy board" +
-                    " and typing \"b\" will show you your own board.  Typing \"r\" will reset all moves and \"u\"" +
-                    " will undo a move.");
-            Thread.sleep(3000);
+            System.out.println("To attack a square, simply enter that square in grid coordinates.");
+            System.out.println("Additionally, typing \"h\" will show you the attacks you've made on the enemy board" +
+                    " and typing \"b\" will show you your own board.");
+            System.out.println("Typing \"r\" will reset all moves and \"u\" will undo a move.");
+            Thread.sleep(1000);
         }
         int turn = 0;
         String command;
@@ -202,15 +202,15 @@ public class Game {
                 System.out.println("Its " + _BRDONE.getName() + "'s turn.  Please enter your move or any other commands:");
                 command = sc.nextLine();
                 while (command.length() == 1) {
-                    if (command == "h") {
+                    if (command.equals("h")) {
                         _BRDTWO.printHits();
-                    } else if (command == "b") {
+                    } else if (command.equals("b")) {
                         _BRDONE.printBoard();
-                    } else if (command == "r") {
+                    } else if (command.equals("r")) {
                         _BRDONE.reset();
                         _BRDTWO.reset();
                         turn = 0;
-                    } else if (command == "u") {
+                    } else if (command.equals("u")) {
                         _BRDONE.undo();
                         turn --;
                     } else {
@@ -229,15 +229,15 @@ public class Game {
                 System.out.println("Its " + _BRDTWO.getName() + "'s turn.  Please enter your move or any other commands:");
                 command = sc.nextLine();
                 while (command.length() == 1) {
-                    if (command == "h") {
+                    if (command.equals("h")) {
                         _BRDONE.printHits();
-                    } else if (command == "b") {
+                    } else if (command.equals("b")) {
                         _BRDTWO.printBoard();
-                    } else if (command == "r") {
+                    } else if (command.equals("r")) {
                         _BRDTWO.reset();
                         _BRDONE.reset();
                         turn = 0;
-                    } else if (command == "u") {
+                    } else if (command.equals("u")) {
                         _BRDTWO.undo();
                         turn --;
                     } else {

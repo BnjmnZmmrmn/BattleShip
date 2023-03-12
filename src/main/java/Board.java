@@ -58,8 +58,13 @@ public class Board {
      */
     public boolean canPlace(int len, char dir, String loc) {
         assert (len <= 5 && len >= 1);
-        assert (dir == 'w' || dir == 'a' || dir == 's' || dir == 'd');
-        int r = Integer.parseInt(loc.substring(1)) - 1;
+        if (dir != 'w' && dir != 'a' && dir != 's' && dir != 'd') {
+            return false;
+        }
+        int r;
+        try {
+            r = Integer.parseInt(loc.substring(1)) - 1;
+        } catch (Error error) {return false;}
         int c = loc.charAt(0) - 97;
         assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
         try {
