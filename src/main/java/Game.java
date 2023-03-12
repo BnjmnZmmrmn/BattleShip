@@ -116,6 +116,15 @@ public class Game {
             }
             System.out.println(".  Please place one:");
             String[] cmmnd = sc.nextLine().split(" ");
+            boolean noError = false;
+            while (!noError) {
+                try {
+                    Integer.parseInt(cmmnd[0]);
+                    noError = true;
+                } catch (Error error) {
+                    System.out.println("Incorrect format for placement.  Please try again.");
+                }
+            }
             if (cmmnd.length != 3 || !simpleContains(Integer.parseInt(cmmnd[0]), p1Ships)) {
                 System.out.println("Incorrect format for placement.  Please try again.");
             } else {
@@ -148,6 +157,15 @@ public class Game {
             }
             System.out.println(".  Please place one:");
             String[] cmmnd = sc.nextLine().split(" ");
+            boolean noError = false;
+            while (!noError) {
+                try {
+                    Integer.parseInt(cmmnd[0]);
+                    noError = true;
+                } catch (Error error) {
+                    System.out.println("Incorrect format for placement.  Please try again.");
+                }
+            }
             if (cmmnd.length != 3 || !simpleContains(Integer.parseInt(cmmnd[0]), p2Ships)) {
                 System.out.println("Incorrect format for placement.  Please try again.");
             } else {
