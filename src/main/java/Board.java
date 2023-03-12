@@ -189,7 +189,11 @@ public class Board {
     public void printBoard() {
         System.out.println("  a b c d e f g h i j");
         for (int r = 0; r < _HEIGHT; r++) {
-            System.out.print((r + 1) + " ");
+            if (r == _HEIGHT - 1) {
+                System.out.print((r + 1) + " ");
+            } else {
+                System.out.print(" " + (r + 1) + " ");
+            }
             for (int c = 0; c < _WIDTH; c++) {
                 System.out.print(_FIELD[r][c] + " ");
                 if (c == _WIDTH - 1) {
@@ -207,7 +211,11 @@ public class Board {
     public void printHits() {
         System.out.println("  a b c d e f g h i j");
         for (int r = 0; r < _HEIGHT; r++) {
-            System.out.print((r + 1) + " ");
+            if (r == _HEIGHT - 1) {
+                System.out.print((r + 1) + " ");
+            } else {
+                System.out.print(" " + (r + 1) + " ");
+            }
             for (int c = 0; c < _WIDTH; c++) {
                 if (_FIELD[r][c] != 'X') {
                     System.out.print(_FIELD[r][c] + " ");

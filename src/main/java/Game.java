@@ -222,7 +222,7 @@ public class Game {
                 if(!_BRDONE.canMove(command)) {
                     System.out.println("Invalid command.");
                 } else {
-                    _BRDONE.move(command);
+                    _BRDTWO.move(command);
                     turn ++;
                 }
             } else {
@@ -249,7 +249,7 @@ public class Game {
                 if(!_BRDTWO.canMove(command)) {
                     System.out.println("Invalid command.");
                 } else {
-                    _BRDTWO.move(command);
+                    _BRDONE.move(command);
                     turn ++;
                 }
             }
