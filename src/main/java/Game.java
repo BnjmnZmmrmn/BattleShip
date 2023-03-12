@@ -89,7 +89,7 @@ public class Game {
         } else {
             _BRDTWO = new Board(name2);
         }
-        System.out.println("Do you need to hear the rules? (Y/N)");
+        System.out.println("Do you need to hear the placement rules? (Y/N)");
         String ans = sc.nextLine();
         if (ans.equals("Y")) {
             System.out.println("This game uses grid coordinates where a1 is the" +
@@ -100,9 +100,6 @@ public class Game {
                     " ship placement should be: <ship length> <direction> <coordinate>." +
                     "  Direction indicates which way a ship will point once you place it," +
                     " indicated by WASD.");
-            Thread.sleep(3000);
-            System.out.println("From there, players will take turns firing at coordinates." +
-                    "  May the best man win!");
             Thread.sleep(3000);
         }
         int[] p1Ships = {5, 4, 3, 3, 2};
@@ -138,7 +135,7 @@ public class Game {
                 }
             }
         }
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         System.out.println(_BRDTWO.getName() + ", its your turn to place ships.");
         while (p2Ships.length != 0) {
             _BRDTWO.printBoard();
@@ -170,6 +167,79 @@ public class Game {
                 }
             }
         }
-        
+        Thread.sleep(3000);
+        System.out.println("All ships are placed.  Do you need to hear the move rules? (Y/N)");
+        ans = sc.nextLine();
+        if (ans.equals("Y")) {
+            System.out.println("To attack a square, simply enter that square in grid coordinates." +
+                    "Additionally, typing \"h\" will show you the attacks you've made on the enemy board" +
+                    " and typing \"b\" will show you your own board.  Typing \"r\" will reset all moves and \"u\"" +
+                    " will undo a move.");
+            Thread.sleep(3000);
+        }
+        int turn = 0;
+        String command;
+        while (_BRDONE.isAlive() && _BRDTWO.isAlive()) {
+            if (turn % 2 == 0) {
+                System.out.println("Its " + _BRDONE.getName() + "'s turn.  Please enter your move or any other commands:");
+                command = sc.nextLine();
+                while (command.length() == 1) {
+                    if (command == "h") {
+                        _BRDTWO.printHits();
+                    } else if (command == "b") {
+                        _BRDONE.printBoard();
+                    } else if (command == "r") {
+                        _BRDONE.reset();
+                        _BRDTWO.reset();
+                        turn = 0;
+                    } else if (command == "u") {
+                        _BRDONE.undo();
+                        turn --;
+                    } else {
+                        System.out.println("Invalid command.");
+                    }
+                    System.out.println("Please enter next command:");
+                    command = sc.nextLine();
+                }
+                if(!_BRDONE.canMove(command)) {
+                    System.out.println("Invalid command.");
+                } else {
+                    _BRDONE.move(command);
+                    turn ++;
+                }
+            } else {
+                System.out.println("Its " + _BRDTWO.getName() + "'s turn.  Please enter your move or any other commands:");
+                command = sc.nextLine();
+                while (command.length() == 1) {
+                    if (command == "h") {
+                        _BRDONE.printHits();
+                    } else if (command == "b") {
+                        _BRDTWO.printBoard();
+                    } else if (command == "r") {
+                        _BRDTWO.reset();
+                        _BRDONE.reset();
+                        turn = 0;
+                    } else if (command == "u") {
+                        _BRDTWO.undo();
+                        turn --;
+                    } else {
+                        System.out.println("Invalid command.");
+                    }
+                    System.out.println("Please enter next command:");
+                    command = sc.nextLine();
+                }
+                if(!_BRDTWO.canMove(command)) {
+                    System.out.println("Invalid command.");
+                } else {
+                    _BRDTWO.move(command);
+                    turn ++;
+                }
+            }
+        }
+        if (_BRDONE.isAlive()) {
+            System.out.println("Congrats " + _BRDONE.getName() + ", you win!");
+        } else {
+            System.out.println("Congrats " + _BRDTWO.getName() + ", you win!");
+        }
     }
 }

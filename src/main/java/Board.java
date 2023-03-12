@@ -141,7 +141,9 @@ public class Board {
     public boolean canMove(String move) {
         int r = Integer.parseInt(move.substring(1)) - 1;
         int c = move.charAt(0) - 97;
-        assert (r >= 0 && r <= 9 && c >= 0 && c <= 9);
+        if (r < 0 || r > 9 || c < 0 || c > 9) {
+            return false;
+        }
         if (_FIELD[r][c] == 'O' || _FIELD[r][c] == '*') {
             return false;
         }
