@@ -1,5 +1,14 @@
+/** This interface contains AI framework.
+ *  @author Ben Zimmerman
+ *  */
 public interface AI {
 
+    /** Strategy for placing ships */
+    void placeShips();
+
     /** Strategy for making moves */
-    void makeMove(Board b);
+    String makeMove();
+
+    /** Returns the AI's board */
+    Board getBoard();
 }

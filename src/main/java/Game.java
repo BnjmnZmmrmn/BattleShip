@@ -4,8 +4,6 @@ import java.util.Scanner;
 import java.util.concurrent.LinkedTransferQueue;
 
 public class Game {
-    /** The maximum amount of moves for a battleship game. */
-    private static final int _MAXMV = 200;
 
     /** Keeps track of move number, also used to determine whose turn. */
     private static int _MVCNT = 0;
@@ -16,39 +14,10 @@ public class Game {
     /** Player two's battleship board. */
     private static Board _BRDTWO;
 
-    /** Places a ship on a board. */
-    private static boolean placeShip(Board board, int len, char w, String loc) {
-        if (board.canPlace(len, w, loc)) {
-            board.placeShip(len, w, loc);
-            return true;
-        }
-        return false;
-    }
-
     /** Resets both boards to after ship placements. */
     private static void resetBoards() {
         _BRDONE.reset();
         _BRDTWO.reset();
-    }
-
-    /** Undoes the last move made in the game. */
-    private static void undoMove() {
-        assert (_MVCNT > 0);
-        if (_MVCNT % 2 == 1) {
-            _BRDONE.undo();
-        } else {
-            _BRDTWO.undo();
-        }
-        _MVCNT--;
-    }
-
-    /** Makes a move on a board. */
-    private static boolean makeMove(Board board, String move) {
-        if (board.canMove(move)) {
-            board.move(move);
-            return true;
-        }
-        return false;
     }
 
     /** Returns true if there is a winner, false otherwise, also. */
@@ -195,10 +164,9 @@ public class Game {
             System.out.println("Typing \"r\" will reset all moves and \"u\" will undo a move.");
             Thread.sleep(1000);
         }
-        int turn = 0;
         String command;
         while (_BRDONE.isAlive() && _BRDTWO.isAlive()) {
-            if (turn % 2 == 0) {
+            if (_MVCNT % 2 == 0) {
                 System.out.println("Its " + _BRDONE.getName() + "'s turn.  Please enter your move or any other commands:");
                 command = sc.nextLine();
                 while (command.length() == 1) {
@@ -209,10 +177,10 @@ public class Game {
                     } else if (command.equals("r")) {
                         _BRDONE.reset();
                         _BRDTWO.reset();
-                        turn = 0;
+                        _MVCNT = 0;
                     } else if (command.equals("u")) {
                         _BRDONE.undo();
-                        turn --;
+                        _MVCNT --;
                     } else {
                         System.out.println("Invalid command.");
                     }
@@ -223,7 +191,7 @@ public class Game {
                     System.out.println("Invalid command.");
                 } else {
                     _BRDTWO.move(command);
-                    turn ++;
+                    _MVCNT ++;
                 }
             } else {
                 System.out.println("Its " + _BRDTWO.getName() + "'s turn.  Please enter your move or any other commands:");
@@ -236,10 +204,10 @@ public class Game {
                     } else if (command.equals("r")) {
                         _BRDTWO.reset();
                         _BRDONE.reset();
-                        turn = 0;
+                        _MVCNT = 0;
                     } else if (command.equals("u")) {
                         _BRDTWO.undo();
-                        turn --;
+                        _MVCNT --;
                     } else {
                         System.out.println("Invalid command.");
                     }
@@ -250,7 +218,7 @@ public class Game {
                     System.out.println("Invalid command.");
                 } else {
                     _BRDONE.move(command);
-                    turn ++;
+                    _MVCNT ++;
                 }
             }
         }
