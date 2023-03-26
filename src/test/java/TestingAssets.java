@@ -2,7 +2,7 @@
  *  BoardTest.java.
  * @author Ben Zimmerman
  */
-public class BoardTestHelper {
+public class TestingAssets {
     public static char[][] _PLACE1 = {
             {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
             {'-', '-', '-', 'X', 'X', 'X', '-', '-', '-', '-'},

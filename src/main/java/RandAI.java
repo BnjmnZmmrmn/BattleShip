@@ -30,7 +30,7 @@ public class RandAI implements AI {
         }
     }
 
-    /** Makes moves randomly. */
+    /** Makes moves randomly. Not guaranteed to be a valid move. */
     @Override
     public String makeMove() {
         int r = (int)(Math.random() * 10) + 1;
