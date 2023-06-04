@@ -19,6 +19,11 @@ public class FinisherAI implements AI {
      */
     private ArrayList<Integer> _FOCUS = new ArrayList<>();
 
+    /** Accessory data for _FOCUS.  Index 0 is current miss count, index
+     * 1 is for lowest relative move, index 2 is for highest relative move.
+     */
+    private int[] _FOCUSINFO = {0, 0, 0};
+
 
     /** Sets _BOARD */
     public FinisherAI(Board b) {
@@ -50,31 +55,13 @@ public class FinisherAI implements AI {
         int r = 0;
         int c = 0;
         if (!_FOCUS.isEmpty()) {
-            if (_FOCUS.get(2) == -1) {
-                r = _FOCUS.get(0);
-                c = _FOCUS.get(1);
-                int d = (int) (Math.random() * 2);
-                _FOCUS.set(2, d);
-                if (d == 0) {
-                    r--;
-                } else {
-                    c--;
-                }
-                _FOCUS.add(-1);
-                _FOCUS.add(1);
+            int d = _FOCUS.get(2);
+            r = _FOCUS.get(0);
+            c = _FOCUS.get(1);
+            if (d == 0) {
+                r+= _FOCUS.get(_FOCUS.size() - 1);
             } else {
-                int d = _FOCUS.get(2);
-                int next = _FOCUS.get(_FOCUS.size() - 1);
-                if (d == 0) {
-                    r += next;
-                } else {
-                    c += next;
-                }
-                if (next > 0) {
-                    _FOCUS.add(next + 1);
-                } else {
-                    _FOCUS.add(next - 1);
-                }
+                c+= _FOCUS.get(_FOCUS.size() - 1);
             }
         } else {
             do {
@@ -84,6 +71,66 @@ public class FinisherAI implements AI {
             _MOVELOCS[(r - 1) * 10 + c] = 1;
         }
         return (char) (c + 97) + "" + r;
+    }
+
+    /** Takes in whether previous move was a hit (true) or miss (false)
+     * and performs necessary logic to plan next move.
+     * @param move
+     * @param hit
+     */
+    public void processResult(String move, boolean hit) {
+        if (hit) {
+            if (_FOCUS.isEmpty()) {
+                int r = Integer.parseInt(move.substring(1)) - 1;
+                int c = move.charAt(0) - 97;
+                _FOCUS.add(r);
+                _FOCUS.add(c);
+                int d = (int) (Math.random() * 2);
+                _FOCUS.add(d);
+                _FOCUS.add(-1);
+                _FOCUSINFO[1]--;
+            } else {
+                // Add logic to handle if 5 hits were already made stop
+                int lastMoveRelative = _FOCUS.get(_FOCUS.size() - 1);
+                if (lastMoveRelative > 0) {
+                    _FOCUS.add(lastMoveRelative + 1);
+                    _FOCUSINFO[2]++;
+                } else {
+                    _FOCUS.add(lastMoveRelative - 1);
+                    _FOCUSINFO[1]--;
+                }
+            }
+        } else if (!_FOCUS.isEmpty()){
+            _FOCUSINFO[0]++;
+            int currMoveCnt = _FOCUS.size() - 3;
+            if (currMoveCnt == 1 || _FOCUSINFO[0] == 3) {
+                _FOCUS.add(1);
+                _FOCUSINFO[2]++;
+            } else if (currMoveCnt == 2 && _FOCUSINFO[0] == 2) {
+                int d = _FOCUS.get(2);
+                if (d == 1) {
+                    _FOCUS.set(2, 0);
+                } else {
+                    _FOCUS.set(2, 1);
+                }
+                _FOCUS.add(-1);
+                _FOCUSINFO[1] = -1;
+                _FOCUSINFO[2] = 0;
+            } else if (_FOCUSINFO[0] == 4) {
+                _FOCUS = new ArrayList<>();
+                _FOCUSINFO[0] = 0;
+                _FOCUSINFO[1] = 0;
+                _FOCUSINFO[2] = 0;
+            } else {
+                if (_FOCUS.get(_FOCUS.size() - 1) > 0) {
+                    _FOCUS.add(_FOCUSINFO[1] - 1);
+                    _FOCUSINFO[1]--;
+                } else {
+                    _FOCUS.add(_FOCUSINFO[2] + 1);
+                    _FOCUSINFO[2]++;
+                }
+            }
+        }
     }
 
     @Override
