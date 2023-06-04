@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /** This class contains tests for Board.java as well
@@ -72,14 +71,14 @@ class BoardTest {
         _TESTBOARD1.placeShip(2, 's', "i9");
         _TESTBOARD1.placeShip(4, 'd', "g5");
         _TESTBOARD1.placeShip(3, 'd', "c7");
-        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._PLACE1));
+        assertTrue(bEquals(_TESTBOARD1.getField(), TestingAssets._PLACE1));
 
         _TESTBOARD2.placeShip(5, 's', "c3");
         _TESTBOARD2.placeShip(4, 'd', "e4");
         _TESTBOARD2.placeShip(3, 'w', "f9");
         _TESTBOARD2.placeShip(3, 'w', "g8");
         _TESTBOARD2.placeShip(2, 'a', "i9");
-        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._PLACE2));
+        assertTrue(bEquals(_TESTBOARD2.getField(), TestingAssets._PLACE2));
     }
 
     @Test
@@ -115,28 +114,28 @@ class BoardTest {
         _TESTBOARD1.move("h5");
         _TESTBOARD1.move("i5");
         _TESTBOARD1.move("j5");
-        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._MOVE1));
+        assertTrue(bEquals(_TESTBOARD1.getField(), TestingAssets._MOVE1));
 
         _TESTBOARD1.move("g5");
         _TESTBOARD1.move("d9");
         _TESTBOARD1.move("h2");
         _TESTBOARD1.move("i9");
         _TESTBOARD1.move("h9");
-        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._MOVE2));
+        assertTrue(bEquals(_TESTBOARD1.getField(), TestingAssets._MOVE2));
 
         _TESTBOARD2.move("c3");
         _TESTBOARD2.move("d3");
         _TESTBOARD2.move("c2");
         _TESTBOARD2.move("c4");
         _TESTBOARD2.move("c5");
-        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._MOVE3));
+        assertTrue(bEquals(_TESTBOARD2.getField(), TestingAssets._MOVE3));
 
         _TESTBOARD2.move("c6");
         _TESTBOARD2.move("c7");
         _TESTBOARD2.move("h2");
         _TESTBOARD2.move("e8");
         _TESTBOARD2.move("f4");
-        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._MOVE4));
+        assertTrue(bEquals(_TESTBOARD2.getField(), TestingAssets._MOVE4));
     }
 
     @Test
@@ -202,13 +201,13 @@ class BoardTest {
         initShips();
         initMove();
         _TESTBOARD1.undo();
-        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._UNDO1));
+        assertTrue(bEquals(_TESTBOARD1.getField(), TestingAssets._UNDO1));
         _TESTBOARD1.undo();
-        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._UNDO2));
+        assertTrue(bEquals(_TESTBOARD1.getField(), TestingAssets._UNDO2));
         _TESTBOARD2.undo();
-        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._UNDO3));
+        assertTrue(bEquals(_TESTBOARD2.getField(), TestingAssets._UNDO3));
         _TESTBOARD2.undo();
-        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._UNDO4));
+        assertTrue(bEquals(_TESTBOARD2.getField(), TestingAssets._UNDO4));
     }
 
     @Test
@@ -217,9 +216,9 @@ class BoardTest {
         initShips();
         initMove();
         _TESTBOARD1.reset();
-        assertTrue(bEquals(_TESTBOARD1.getField(), BoardTestHelper._PLACE1));
+        assertTrue(bEquals(_TESTBOARD1.getField(), TestingAssets._PLACE1));
         _TESTBOARD2.reset();
-        assertTrue(bEquals(_TESTBOARD2.getField(), BoardTestHelper._PLACE2));
+        assertTrue(bEquals(_TESTBOARD2.getField(), TestingAssets._PLACE2));
     }
 
     /** Initializes test boards with given names. */
