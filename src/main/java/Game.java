@@ -187,11 +187,12 @@ public class Game {
                     System.out.println("Please enter next command:");
                     command = sc.nextLine();
                 }
-                if(!_BRDONE.canMove(command)) {
+                if(!_BRDTWO.canMove(command)) {
                     System.out.println("Invalid command.");
                 } else {
                     _BRDTWO.move(command);
                     _MVCNT ++;
+                    _BRDTWO.printHits();
                 }
             } else {
                 System.out.println("Its " + _BRDTWO.getName() + "'s turn.  Please enter your move or any other commands:");
@@ -214,11 +215,12 @@ public class Game {
                     System.out.println("Please enter next command:");
                     command = sc.nextLine();
                 }
-                if(!_BRDTWO.canMove(command)) {
+                if(!_BRDONE.canMove(command)) {
                     System.out.println("Invalid command.");
                 } else {
                     _BRDONE.move(command);
                     _MVCNT ++;
+                    _BRDONE.printHits();
                 }
             }
         }

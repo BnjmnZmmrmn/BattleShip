@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /** This class is a random AI that makes moves based on
  * no data at all.
  *  @author Ben Zimmerman
@@ -7,9 +9,15 @@ public class RandAI implements AI {
     /** Board of AI */
     private Board _BOARD;
 
+    /** Used to ensure move validity in makeMove */
+    private int[] _MOVELOCS = new int[100];
+
     /** Sets the board */
     public RandAI(Board b) {
         _BOARD = b;
+        for (int i = 0; i < 100; i ++) {
+            _MOVELOCS[i] = 0;
+        }
     }
 
     /** Places all ships randomly. */
@@ -30,12 +38,17 @@ public class RandAI implements AI {
         }
     }
 
-    /** Makes moves randomly. */
+    /** Makes moves randomly, also ensures the move is valid */
     @Override
     public String makeMove() {
-        int r = (int)(Math.random() * 10) + 1;
-        int c = (int)(Math.random() * 10) + 1;
-        return c + "" + r;
+        int r;
+        int c;
+        do {
+            r = (int) (Math.random() * 10) + 1;
+            c = (int) (Math.random() * 10) + 1;
+        } while (_MOVELOCS[(r - 1) * 10 + c] == 1);
+        _MOVELOCS[(r - 1) * 10 + c] = 1;
+        return (char) (c + 97) + "" + r;
     }
 
     /** Returns _BOARD */

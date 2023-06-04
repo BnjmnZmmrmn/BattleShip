@@ -187,7 +187,7 @@ public class Board {
      * Notably, this is the users perspective, showing all boats.
      */
     public void printBoard() {
-        System.out.println("  a b c d e f g h i j");
+        System.out.println("   a b c d e f g h i j");
         for (int r = 0; r < _HEIGHT; r++) {
             if (r == _HEIGHT - 1) {
                 System.out.print((r + 1) + " ");
@@ -209,7 +209,7 @@ public class Board {
      * ship-less because this view is for the other player.
      */
     public void printHits() {
-        System.out.println("  a b c d e f g h i j");
+        System.out.println("   a b c d e f g h i j");
         for (int r = 0; r < _HEIGHT; r++) {
             if (r == _HEIGHT - 1) {
                 System.out.print((r + 1) + " ");
