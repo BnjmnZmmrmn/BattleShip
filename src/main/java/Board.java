@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Stack;
 
 /** This class contains the players ships and tracks hits,
@@ -27,7 +28,7 @@ public class Board {
     /** Amount of hits it takes to kill a player. */
     private static final int _MAXHITS = 17;
 
-    /** A list of moves made to this board. */
+    /** A list of moves made to this board */
     private Stack<String> _MVLIST = new Stack<>();
 
     /** Board constructor.  Stores player name, handles an

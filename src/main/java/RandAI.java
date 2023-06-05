@@ -29,12 +29,12 @@ public class RandAI implements AI {
             int len = ships[i];
             int dI = (int)(Math.random() * 4);
             int r = (int)(Math.random() * 10) + 1;
-            int c = (int)(Math.random() * 10) + 1;
-            while(!_BOARD.canPlace(len, dirs[dI], r + "" + c)) {
+            char c = (char)(((int)(Math.random() * 10)) + 97);
+            while(!_BOARD.canPlace(len, dirs[dI], c + "" + r)) {
                 r = (int)(Math.random() * 10) + 1;
-                c = (int)(Math.random() * 10) + 1;
+                c = (char)(((int)(Math.random() * 10)) + 97);
             }
-            _BOARD.move(c + "" + r);
+            _BOARD.placeShip(len,dirs[dI],c + "" + r);
         }
     }
 
@@ -45,10 +45,22 @@ public class RandAI implements AI {
         int c;
         do {
             r = (int) (Math.random() * 10) + 1;
-            c = (int) (Math.random() * 10) + 1;
+            c = (int)(Math.random() * 10);
         } while (_MOVELOCS[(r - 1) * 10 + c] == 1);
         _MOVELOCS[(r - 1) * 10 + c] = 1;
         return (char) (c + 97) + "" + r;
+    }
+
+    /** Undoes a move */
+    @Override
+    public void undo() {
+        _BOARD.undo();
+    }
+
+    /** Resets the board */
+    @Override
+    public void reset() {
+        _BOARD.reset();
     }
 
     /** Returns _BOARD */

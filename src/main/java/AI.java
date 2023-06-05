@@ -9,6 +9,12 @@ public interface AI {
     /** Strategy for making moves */
     String makeMove();
 
+    /** Undoes a move */
+    void undo();
+
+    /** Resets the board */
+    void reset();
+
     /** Returns the AI's board */
     Board getBoard();
 }
